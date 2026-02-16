@@ -9,6 +9,9 @@ from argon2.exceptions import VerifyMismatchError
 
 from ..database import teachers_collection
 
+# Initialize password hasher for reuse
+ph = PasswordHasher()
+
 router = APIRouter(
     prefix="/auth",
     tags=["auth"]
@@ -16,7 +19,6 @@ router = APIRouter(
 
 def verify_password(stored_hash, password):
     """Verify password using Argon2"""
-    ph = PasswordHasher()
     try:
         ph.verify(stored_hash, password)
         return True
