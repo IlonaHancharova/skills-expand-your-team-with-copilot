@@ -14,6 +14,9 @@ router = APIRouter(
     tags=["auth"]
 )
 
+# Instantiate PasswordHasher once at module level for reuse
+ph = PasswordHasher()
+
 @router.post("/login")
 def login(username: str, password: str) -> Dict[str, Any]:
     """Login a teacher account"""
@@ -24,7 +27,6 @@ def login(username: str, password: str) -> Dict[str, Any]:
         raise HTTPException(status_code=401, detail="Invalid username or password")
     
     # Verify the password using Argon2
-    ph = PasswordHasher()
     try:
         ph.verify(teacher["password"], password)
     except VerifyMismatchError:
