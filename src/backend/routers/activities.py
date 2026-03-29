@@ -3,7 +3,6 @@ Endpoints for the High School Management System API
 """
 
 from fastapi import APIRouter, HTTPException, Query
-from fastapi.responses import RedirectResponse
 from typing import Dict, Any, Optional, List
 
 from ..database import activities_collection, teachers_collection

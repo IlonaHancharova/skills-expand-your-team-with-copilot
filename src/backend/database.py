@@ -30,7 +30,7 @@ def init_database():
         for teacher in initial_teachers:
             teachers_collection.insert_one({"_id": teacher["username"], **teacher})
 
-# Initial database if empty
+# Initialize database with initial data
 initial_activities = {
     "Chess Club": {
         "description": "Learn strategies and compete in chess tournaments",
